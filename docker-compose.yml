@@ -1,0 +1,16 @@
+version: "3"
+services:
+  frontend:
+    build: .
+    command: "sh -c 'cd /frontend-files; npm install; npm run dev --'"
+    networks:
+      - qmul
+    ports:
+      - 3333:3000
+    restart: "no"
+    user: ${USERID}:${GID}
+    volumes:
+      - .:/frontend-files:cached
+
+networks:
+  qmul:
