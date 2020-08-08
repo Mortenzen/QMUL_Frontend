@@ -18,6 +18,7 @@ export default {
   data () {
     return {
       users: [],
+      timer: null,
       headers: [
         {
           text: 'Name',
@@ -38,9 +39,18 @@ export default {
       return this.userItems.length
     }
   },
-  async mounted () {
-    const data = await this.$axios.get('get-data')
-    this.users = data.data
+  mounted () {
+    this.timer = setInterval(this.getData, 1000)
+    this.getData()
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
+  },
+  methods: {
+    async getData () {
+      const data = await this.$axios.get('get-data')
+      this.users = data.data
+    }
   }
 
 }
