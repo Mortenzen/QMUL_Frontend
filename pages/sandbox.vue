@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Users in database: {{ userLen }}</v-card-title>
+    <v-card-title>Number of users in database: {{ userLen }}</v-card-title>
     <v-data-table
       :headers="headers"
       :items="userItems"
