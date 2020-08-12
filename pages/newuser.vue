@@ -1,3 +1,4 @@
+        
 <template>
 
   <v-card
@@ -10,7 +11,7 @@
     >
       <v-spacer></v-spacer>
 
-
+      
     </v-system-bar>
     <v-toolbar
       color="deep-purple accent-2"
@@ -19,7 +20,7 @@
       flat
     >
      
-      <v-card-title class="title font-weight-regular">Admin Login</v-card-title>
+      <v-card-title class="title font-weight-regular">Insert User</v-card-title>
       <v-spacer></v-spacer>
      
      
@@ -30,6 +31,12 @@
       class="pa-4 pt-6"
     >
 
+    <v-text-field
+        v-model="Name"
+        filled
+        color="deep-purple"
+        label="Name"
+      ></v-text-field>
 
      <v-text-field
         v-model="email"
@@ -42,10 +49,10 @@
 
       <v-text-field
         v-model="password"
-        
+        :rules="[rules.password, rules.length(6)]"
         filled
         color="deep-purple"
-        
+        counter="6"
         label="Password"
         style="min-height: 96px"
         type="password"

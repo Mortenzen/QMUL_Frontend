@@ -79,8 +79,13 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Sandbox',
+          title: 'User List',
           to: '/sandbox'
+        },
+         {
+          icon: 'mdi-chart-bubble',
+          title: 'Insert New User',
+          to: '/newuser'
         }
       ],
       miniVariant: false,
