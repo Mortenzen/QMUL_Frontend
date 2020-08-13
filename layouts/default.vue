@@ -82,10 +82,15 @@ export default {
           title: 'User List',
           to: '/sandbox'
         },
-         {
+        {
           icon: 'mdi-account-plus',
           title: 'Insert New User',
           to: '/newuser'
+        },
+        {
+          icon: 'mdi-home-circle',
+          title: 'New Room',
+          to: '/newroom'
         },
         {
           icon: 'mdi-account-plus',
