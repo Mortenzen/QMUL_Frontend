@@ -86,6 +86,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Insert New User',
           to: '/newuser'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Insert New Moderator',
+          to: '/newmoderator'
         }
       ],
       miniVariant: false,
