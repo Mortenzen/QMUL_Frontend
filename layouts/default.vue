@@ -73,22 +73,22 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-monitor',
           title: 'Dashboard',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-multiple',
           title: 'User List',
           to: '/sandbox'
         },
          {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-plus',
           title: 'Insert New User',
           to: '/newuser'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-plus',
           title: 'Insert New Moderator',
           to: '/newmoderator'
         }
