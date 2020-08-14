@@ -96,6 +96,11 @@ export default {
           icon: 'mdi-account-plus',
           title: 'Insert New Moderator',
           to: '/newmoderator'
+        },
+        {
+          icon: 'mdi-account-plus',
+          title: 'Insert New Access',
+          to: '/newaccess'
         }
       ],
       miniVariant: false,
