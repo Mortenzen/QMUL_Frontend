@@ -1,20 +1,8 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
+        <v-list-item v-for="(item, i) in userItems" :key="i" :to="item.to" router exact>
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -24,11 +12,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
+    <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
@@ -38,12 +22,7 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
+    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
@@ -55,16 +34,15 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -75,32 +53,38 @@ export default {
         {
           icon: 'mdi-monitor',
           title: 'Dashboard',
-          to: '/'
+          to: '/',
+          private: false
         },
         {
           icon: 'mdi-account-multiple',
           title: 'User List',
-          to: '/sandbox'
+          to: '/sandbox',
+          private: false
         },
         {
           icon: 'mdi-account-plus',
           title: 'Insert New User',
-          to: '/newuser'
+          to: '/newuser',
+          private: true
         },
         {
           icon: 'mdi-home-circle',
           title: 'New Room',
-          to: '/newroom'
+          to: '/newroom',
+          private: true
         },
         {
           icon: 'mdi-account-plus',
           title: 'Insert New Moderator',
-          to: '/newmoderator'
+          to: '/newmoderator',
+          private: true
         },
         {
           icon: 'mdi-account-plus',
           title: 'Insert New Access',
-          to: '/newaccess'
+          to: '/newaccess',
+          private: true
         }
       ],
       miniVariant: false,
@@ -108,6 +92,16 @@ export default {
       rightDrawer: false,
       title: 'Queen Mary University Project'
     }
+  },
+  computed: {
+    userItems () {
+      return this.items.filter(
+        item => !item.private || (item.private && this.user)
+      )
+    },
+    ...mapState({
+      user: 'user'
+    })
   }
 }
 </script>

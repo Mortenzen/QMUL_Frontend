@@ -1,99 +1,63 @@
 <template>
-
-  <v-card
-    class="mx-auto"
-    style="max-width: 500px;"
-  >
-    <v-system-bar
-      color="deep-purple darken-2"
-      dark
-    >
-      <v-spacer></v-spacer>
-
-
+  <v-card class="mx-auto" style="max-width: 500px;">
+    <v-system-bar color="deep-purple darken-2" dark>
+      <v-spacer />
     </v-system-bar>
-    <v-toolbar
-      color="deep-purple accent-2"
-      cards
-      dark
-      flat
-    >
-     
-      <v-card-title class="title font-weight-regular">Admin Login</v-card-title>
-      <v-spacer></v-spacer>
-     
-     
+    <v-toolbar color="deep-purple accent-2" cards dark flat>
+      <v-card-title class="title font-weight-regular">
+        Admin Login
+      </v-card-title>
+      <v-spacer />
     </v-toolbar>
-    <v-form
-      ref="form"
-      v-model="form"
-      class="pa-4 pt-6"
-    >
-
-
-     <v-text-field
+    <v-form ref="form" v-model="form" class="pa-4 pt-6">
+      <v-text-field
         v-model="email"
         :rules="[rules.email]"
         filled
         color="deep-purple"
         label="Email address"
         type="email"
-      ></v-text-field>
+      />
 
       <v-text-field
         v-model="password"
-        
         filled
         color="deep-purple"
-        
         label="Password"
         style="min-height: 96px"
         type="password"
-      ></v-text-field>
-
+      />
     </v-form>
-    <v-divider></v-divider>
+    <v-divider />
     <v-card-actions>
-      <v-btn
-        text
-        @click="$refs.form.reset()"
-      >
+      <v-btn text @click="logout">
         Clear
       </v-btn>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn
         :disabled="!form"
         :loading="isLoading"
         class="white--text"
         color="deep-purple accent-4"
         depressed
-      >Submit</v-btn>
+        @click="login"
+      >
+        Submit
+      </v-btn>
     </v-card-actions>
-    <v-dialog
-      v-model="dialog"
-      absolute
-      max-width="400"
-      persistent
-    >
+    <v-dialog v-model="dialog" absolute max-width="400" persistent>
       <v-card>
-        <v-card-title class="headline grey lighten-3">Legal</v-card-title>
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </v-card-text>
-        <v-divider></v-divider>
+        <v-card-title class="headline grey lighten-3">
+          Legal
+        </v-card-title>
+        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</v-card-text>
+        <v-divider />
         <v-card-actions>
-          <v-btn
-            text
-            @click="agreement = false, dialog = false"
-          >
+          <v-btn text @click="agreement = false, dialog = false">
             No
           </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            class="white--text"
-            color="deep-purple accent-4"
-            @click="agreement = true, dialog = false"
-          >
+          <v-spacer />
+          <v-btn class="white--text" color="deep-purple accent-4" @click="login">
             Yes
           </v-btn>
         </v-card-actions>
@@ -103,28 +67,43 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      agreement: false,
-      dialog: false,
-      email: undefined,
-      form: false,
-      isLoading: false,
-      password: undefined,
-      phone: undefined,
-      rules: {
-        email: v => !!(v || '').match(/@/) || 'Please enter a valid email',
-        length: len => v => (v || '').length >= len || `Invalid character length, required ${len}`,
-        password: v => !!(v || '').match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/) ||
-          'Password must contain an upper case letter, a numeric character, and a special character',
-        required: v => !!v || 'This field is required',
-      },
-    }),
+import { mapMutations } from 'vuex'
+
+export default {
+  data: () => ({
+    agreement: false,
+    dialog: false,
+    email: undefined,
+    form: false,
+    isLoading: false,
+    password: undefined,
+    phone: undefined,
+    rules: {
+      email: v => !!(v || '').match(/@/) || 'Please enter a valid email',
+      length: len => v =>
+        (v || '').length >= len || `Invalid character length, required ${len}`,
+      password: v =>
+        !!(v || '').match(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
+        ) ||
+        'Password must contain an upper case letter, a numeric character, and a special character',
+      required: v => !!v || 'This field is required'
+    }
+  }),
+  methods: {
+    logout () {
+      this.$refs.form.reset()
+      this.setUser()
+    },
+    login () {
+      console.log('submit')
+      this.setUser('ide kell a user object')
+    },
+    ...mapMutations(['setUser'])
   }
+}
 
-
-//<template>
-  //<v-layout />
-//</template>
+// <template>
+// <v-layout />
+// </template>
 </script>
-
