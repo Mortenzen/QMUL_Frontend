@@ -64,8 +64,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:3000/api' // Used as fallback if no runtime config is provided
-    // baseURL: 'https://ramziproject.co.uk/api', // Used as fallback if no runtime config is provided
+    // baseURL: 'http://localhost:3000/api' // Used as fallback if no runtime config is provided
+    baseURL: 'https://ramziproject.co.uk/api' // Used as fallback if no runtime config is provided
   },
   /*
   ** vuetify module configuration
