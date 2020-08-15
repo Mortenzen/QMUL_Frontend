@@ -85,6 +85,12 @@ export default {
           title: 'Insert New Access',
           to: '/newaccess',
           private: true
+        },
+         {
+          icon: 'mdi-logout',
+          title: 'Logout',
+          to: '/logout',
+          private: true
         }
       ],
       miniVariant: false,
