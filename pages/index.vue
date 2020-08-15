@@ -99,10 +99,12 @@ export default {
         password: this.password
       })
         .then(function (response) {
+          if(response == '200'){ 
           console.log('200')
           console.log('submit')
-         // this.setUser('ide kell a user object')
+          this.setUser('ide kell a user object')
           location.reload()
+          }
         })
         .catch(function (error) {
           console.log(error)
