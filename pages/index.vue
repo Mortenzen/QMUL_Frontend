@@ -30,7 +30,8 @@
     </v-form>
     <v-divider />
     <v-card-actions>
-      <v-btn text @click="logout">
+      <v-btn text
+        @click="$refs.form.reset()">
         Clear
       </v-btn>
       <v-spacer />
@@ -40,7 +41,7 @@
         class="white--text"
         color="deep-purple accent-4"
         depressed
-        @click="login"
+         @click="sendData()"
       >
         Submit
       </v-btn>
@@ -91,15 +92,41 @@ export default {
     }
   }),
   methods: {
-    logout () {
+
+    sendData () {
+      this.$axios.post('moderator-login', {
+        name: this.name
+      })
+        .then(function (response) {
+          console.log('200')
+          console.log('submit')
+         // this.setUser('ide kell a user object')
+          location.reload()
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+  
+/*
+  logout () {
       this.$refs.form.reset()
-      this.setUser()
+      this.setUeweeeee33ser()
     },
     login () {
       console.log('submit')
       this.setUser('ide kell a user object')
     },
+*/
+
+  
     ...mapMutations(['setUser'])
+
+
+
+
+
+
   }
 }
 
