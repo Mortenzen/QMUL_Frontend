@@ -41,7 +41,7 @@
         class="white--text"
         color="deep-purple accent-4"
         depressed
-         @click="sendData()"
+         @click="login()"
       >
         Submit
       </v-btn>
@@ -91,8 +91,15 @@ export default {
       required: v => !!v || 'This field is required'
     }
   }),
+
   methods: {
 
+  login () {
+      console.log('submit')
+      this.setUser('ide kell a user object')
+    },
+
+/*
     sendData () {
       this.$axios.post('moderator-login', {
         email: this.email,
@@ -110,7 +117,7 @@ export default {
           console.log(error)
         })
     },
-  
+  */
 /*
   logout () {
       this.$refs.form.reset()
