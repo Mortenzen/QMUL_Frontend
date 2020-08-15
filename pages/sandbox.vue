@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async getData () {
-      const data = await this.$axios.get('get-data')
+      const data = await this.$axios.get('get-data', { progress: false })
       this.users = data.data
     }
   }
