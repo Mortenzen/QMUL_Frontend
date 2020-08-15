@@ -95,7 +95,8 @@ export default {
 
     sendData () {
       this.$axios.post('moderator-login', {
-        name: this.name
+        email: this.email,
+        password: this.password
       })
         .then(function (response) {
           console.log('200')
