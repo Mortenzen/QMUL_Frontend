@@ -30,10 +30,7 @@
     </v-form>
     <v-divider />
     <v-card-actions>
-      <v-btn
-        text
-        @click="$refs.form.reset()"
-      >
+      <v-btn text @click="$refs.form.reset()">
         Clear
       </v-btn>
       <v-spacer />
@@ -53,14 +50,26 @@
         <v-card-title class="headline grey lighten-3">
           Legal
         </v-card-title>
-        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</v-card-text>
+        <v-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </v-card-text>
         <v-divider />
         <v-card-actions>
-          <v-btn text @click="agreement = false, dialog = false">
+          <v-btn text @click="(agreement = false), (dialog = false)">
             No
           </v-btn>
           <v-spacer />
-          <v-btn class="white--text" color="deep-purple accent-4" @click="login">
+          <v-btn
+            class="white--text"
+            color="deep-purple accent-4"
+            @click="login"
+          >
             Yes
           </v-btn>
         </v-card-actions>
@@ -70,7 +79,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   data: () => ({
@@ -93,46 +102,32 @@ export default {
       required: v => !!v || 'This field is required'
     }
   }),
-
+  mounted () {
+    if (this.user) {
+      this.$router.push('/rooms')
+    }
+  },
+  computed: {
+    ...mapState(['user'])
+  },
+  watch: {
+    user (user) {
+      if (user) {
+        this.$router.push('/rooms')
+      }
+    }
+  },
   methods: {
-
-    login () {
-      console.log('submit')
-      this.setUser('ide kell a user object')
-    },
-
-    /*
-    sendData () {
-      this.$axios.post('moderator-login', {
-        email: this.email,
-        password: this.password
-      })
-        .then(function (response) {
-          if(response == '200'){
-          console.log('200')
-          console.log('submit')
-          this.setUser('ide kell a user object')
-          location.reload()
-          }
+    async login () {
+      const user = await this.$axios
+        .post('moderator-login', {
+          email: this.email,
+          password: this.password
         })
-        .catch(function (error) {
-          console.log(error)
-        })
+        .catch(_err => this.setUser())
+      this.setUser(user.data)
     },
-  */
-    /*
-  logout () {
-      this.$refs.form.reset()
-      this.setUeweeeee33ser()
-    },
-    login () {
-      console.log('submit')
-      this.setUser('ide kell a user object')
-    },
-*/
-
     ...mapMutations(['setUser'])
-
   }
 }
 

@@ -16,6 +16,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <span v-if="user">Hello {{ user.name }}</span>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -51,8 +52,8 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-monitor',
-          title: 'Dashboard',
+          icon: 'mdi-login',
+          title: 'Login',
           to: '/',
           private: false
         },
@@ -109,7 +110,7 @@ export default {
     userItems () {
       return this.items.filter(
         item => !item.private || (item.private && this.user)
-      )
+      ).filter(item => (item.title !== 'Login' || !this.user))
     },
     ...mapState({
       user: 'user'
@@ -117,3 +118,4 @@ export default {
   }
 }
 </script>
+ || !this.user

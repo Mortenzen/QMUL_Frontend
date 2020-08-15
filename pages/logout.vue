@@ -12,7 +12,7 @@ export default {
 
   methods: {
     logout () {
-      location.replace('https://ramziproject.co.uk/')
+      this.$router.push('/')
       this.setUser()
     },
     ...mapMutations(['setUser'])
