@@ -37,7 +37,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: "~/plugins/vuex-persist", ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Auto import components
@@ -64,7 +64,8 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'https://ramziproject.co.uk/api', // Used as fallback if no runtime config is provided
+    baseURL: 'http://localhost:3000/api' // Used as fallback if no runtime config is provided
+    // baseURL: 'https://ramziproject.co.uk/api', // Used as fallback if no runtime config is provided
   },
   /*
   ** vuetify module configuration
@@ -91,20 +92,20 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
- build: {
-  extend(config, ctx) {
-     // Run ESLint on save
-     if (ctx.isDev && ctx.isClient) {
-       config.module.rules.push({
-         enforce: "pre",
-         test: /\.(js|vue)$/,
-         loader: "eslint-loader",
-         exclude: /(node_modules)/,
-         options: {
-           fix: true
-         }
-       })
-     }
-   }
+  build: {
+    extend (config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
+        })
+      }
+    }
   }
 }

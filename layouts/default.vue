@@ -63,13 +63,19 @@ export default {
           private: false
         },
         {
+          icon: 'mdi-home',
+          title: 'Rooms',
+          to: '/rooms',
+          private: false
+        },
+        {
           icon: 'mdi-account-plus',
           title: 'Insert New User',
           to: '/newuser',
           private: true
         },
         {
-          icon: 'mdi-home-circle',
+          icon: 'mdi-home-plus',
           title: 'New Room',
           to: '/newroom',
           private: true
@@ -81,12 +87,12 @@ export default {
           private: true
         },
         {
-          icon: 'mdi-account-plus',
+          icon: 'mdi-lock-plus',
           title: 'Insert New Access',
           to: '/newaccess',
           private: true
         },
-         {
+        {
           icon: 'mdi-logout',
           title: 'Logout',
           to: '/logout',
