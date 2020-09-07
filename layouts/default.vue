@@ -94,6 +94,18 @@ export default {
           private: true
         },
         {
+          icon: 'mdi-account-minus',
+          title: 'Remove User',
+          to: '/test',
+          private: true
+        },
+        {
+          icon: 'mdi-account-minus',
+          title: 'Remove Access',
+          to: '/test',
+          private: true
+        },
+        {
           icon: 'mdi-logout',
           title: 'Logout',
           to: '/logout',
